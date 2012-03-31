@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ADOBE SYSTEMS INCORPORATED
+Copyright 2008 Adobe Systems Incorporated
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file
+in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for the thumb of a Spark HScrollBar component.  
+
+@see spark.components.HScrollBar
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:fb="http://ns.adobe.com/flashbuilder/2009">
+	
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.spark.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.Button")]
+		]]>
+	</fx:Metadata> 
+	
+	<fx:Script fb:purpose="styling">
+		/**
+		 * @private
+		 */
+		override protected function initializationComplete():void
+		{
+			useChromeColor = true;
+			super.initializationComplete();
+		}
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<!-- background -->
+	<s:Rect left="1" top="4" right="2" bottom="2" minWidth="10" minHeight="10"
+			topLeftRadiusX="5" 
+			topLeftRadiusY="5"
+			topRightRadiusX="5"
+			topRightRadiusY="5"
+			bottomLeftRadiusX="5"
+			bottomLeftRadiusY="5"
+			bottomRightRadiusX="5"
+			bottomRightRadiusY="5"
+			>
+
+		<s:fill>
+			<s:SolidColor color="0xC6C8CA" />
+		</s:fill>
+	</s:Rect>
+</s:SparkSkin>
