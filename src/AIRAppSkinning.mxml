@@ -4,6 +4,34 @@
 					   showStatusBar="false"
 					   skinClass="com.kim.skins.background.AppSkin"
 					   xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function btnClose_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.close();
+			}
+			
+			protected function btnRestore_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				btnRestore.visible = false;
+				btnMaximize.visible = true;
+				this.restore();
+			}
+			
+			protected function btnMaximize_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				btnRestore.visible = true;
+				btnMaximize.visible = false;
+				this.maximize();	
+			}
+			
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -14,8 +42,16 @@
 					   skinClass="com.kim.skins.rightPanel.RightPanelSkin">
 		<s:Scroller left="5" top="25" right="5" bottom="5" skinClass="com.kim.skins.common.scroller.ScrollerSkin">
 			<s:Group width="100%" height="100%">
-				
+				<s:Image source="@Embed('assets/sample.jpg')"/>
 			</s:Group>
 		</s:Scroller>
 	</s:BorderContainer>
+	<s:Button id="btnClose" right="10" top="10" click="btnClose_clickHandler(event)"
+			  skinClass="com.kim.skins.window.close.CloseButtonSkin"/>
+	<s:Button id="btnRestore" right="30" top="10" label="Button"
+			  click="btnRestore_clickHandler(event)" visible="false"
+			  skinClass="com.kim.skins.window.restore.RestoreButtonSkin"/>
+	<s:Button id="btnMaximize" right="30" top="10" label="Button"
+			  click="btnMaximize_clickHandler(event)"
+			  skinClass="com.kim.skins.window.maximize.MaximizeButtonSkin"/>
 </s:WindowedApplication>
