@@ -85,7 +85,7 @@
 		<minSize>960 720</minSize>
 
 		<!-- The window's initial maximum size, specified as a width/height pair in pixels, such as "1600 1200". Optional. -->
-		<maxSize>1024 768</maxSize>
+		<!-- <maxSize>1024 768</maxSize> -->
 
         <!-- The initial aspect ratio of the app when launched (either "portrait" or "landscape"). Optional. Mobile only. Default is the natural orientation of the device -->
 

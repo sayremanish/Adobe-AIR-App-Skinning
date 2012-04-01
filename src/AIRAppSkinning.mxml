@@ -3,30 +3,38 @@
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   showStatusBar="false"
 					   skinClass="com.kim.skins.background.AppSkin"
+					   resize="windowedapplication1_resizeHandler(event)"
 					   xmlns:mx="library://ns.adobe.com/flex/mx">
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.ResizeEvent;
 			protected function btnClose_clickHandler(event:MouseEvent):void
 			{
-				// TODO Auto-generated method stub
 				this.close();
 			}
 			
 			protected function btnRestore_clickHandler(event:MouseEvent):void
 			{
-				// TODO Auto-generated method stub
-				btnRestore.visible = false;
-				btnMaximize.visible = true;
 				this.restore();
 			}
 			
 			protected function btnMaximize_clickHandler(event:MouseEvent):void
 			{
-				// TODO Auto-generated method stub
-				btnRestore.visible = true;
-				btnMaximize.visible = false;
 				this.maximize();	
+			}
+			
+			protected function windowedapplication1_resizeHandler(event:ResizeEvent):void
+			{
+				if(nativeWindow){
+					if(nativeWindow.displayState == "maximized"){
+						btnRestore.visible = true;
+						btnMaximize.visible = false;
+					}else{
+						btnRestore.visible = false;
+						btnMaximize.visible = true;
+					}
+				}				
 			}
 			
 		]]>

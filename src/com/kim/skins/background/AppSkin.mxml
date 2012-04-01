@@ -41,12 +41,15 @@
 		<![CDATA[
 			import mx.events.ResizeEvent;
 			
+			private var _mouseDown:Boolean = false;
+			private var _isMaximized:Boolean = false;
 			protected function sparkskin1_resizeHandler(event:ResizeEvent):void
 			{
-				// TODO Auto-generated method stub
-				if(hostComponent.width == 1024 && hostComponent.height == 768){
+				if(hostComponent.nativeWindow.displayState == "maximized"){
+					_isMaximized = true;
 					setCornerRadius(0);
 				}else{
+					_isMaximized = false;
 					setCornerRadius(5);
 				}
 			}
@@ -60,6 +63,32 @@
 				backgroundRect.bottomLeftRadiusY = radius;
 				backgroundRect.bottomRightRadiusX = radius;
 				backgroundRect.bottomRightRadiusY = radius;
+			}
+			
+			protected function group1_mouseDownHandler(event:MouseEvent):void
+			{
+				_mouseDown = true;
+			}
+			
+			protected function group1_mouseMoveHandler(event:MouseEvent):void
+			{
+				if(_mouseDown){
+					hostComponent.nativeWindow.startMove();
+				}
+			}
+			
+			protected function group1_mouseUpHandler(event:MouseEvent):void
+			{
+				_mouseDown = false;
+			}
+			
+			protected function group1_doubleClickHandler(event:MouseEvent):void
+			{
+				if(_isMaximized){
+					hostComponent.restore();
+				}else{
+					hostComponent.maximize();
+				}
 			}
 			
 		]]>
@@ -130,8 +159,22 @@
             <s:SolidColor id="backgroundFill"/>
         </s:fill>
     </s:Rect>
-
-    <!-- layer 2: content + status bar -->
+	
+	<!-- layer 2: title bar -->
+	<s:Group 
+		left="0" 
+		right="0" 
+		top="0" 
+		height="38"
+		doubleClickEnabled="true"
+		doubleClick="group1_doubleClickHandler(event)"
+		mouseDown="group1_mouseDownHandler(event)"
+		mouseMove="group1_mouseMoveHandler(event)"
+		mouseUp="group1_mouseUpHandler(event)"
+		>
+		
+	</s:Group>
+    <!-- layer 3: content + status bar -->
     <s:Group left="0" right="0" top="0" bottom="0" minHeight="24" minWidth="0" >
         <s:layout>
             <s:VerticalLayout gap="0"/>
