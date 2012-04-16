@@ -3,7 +3,8 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" 
 		 xmlns:controls="org.robotlegs.demos.draganddrop.view.controls.*">
-	<controls:ButtonBitmapImage source="@Embed(source='/theme/assets/buttons/INFO icon.png')"
+	<!--<controls:ButtonBitmapImage source="@Embed(source='/theme/assets/buttons/INFO icon.png')"
 								hoverSource="@Embed(source='/theme/assets/buttons/INFO icon mouseover.png')"
 								downSource="@Embed(source='/theme/assets/buttons/INFO icon selected.png')" />
+	-->
 </s:Group>

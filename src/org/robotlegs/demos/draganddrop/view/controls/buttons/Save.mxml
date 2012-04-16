@@ -3,7 +3,8 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" 
 		 xmlns:controls="org.robotlegs.demos.draganddrop.view.controls.*">
-	<controls:ButtonBitmapImage source="@Embed(source='/theme/assets/buttons/SAVE icon.png', scaleGridLeft='6', scaleGridRight='20', scaleGridTop='6', scaleGridBottom='21')"
+	<!--<controls:ButtonBitmapImage source="@Embed(source='/theme/assets/buttons/SAVE icon.png', scaleGridLeft='6', scaleGridRight='20', scaleGridTop='6', scaleGridBottom='21')"
 								hoverSource="@Embed(source='/theme/assets/buttons/SAVE icon mouseover.png', scaleGridLeft='6', scaleGridRight='20', scaleGridTop='6', scaleGridBottom='21')"
 								downSource="@Embed(source='/theme/assets/buttons/SAVE icon selected.png', scaleGridLeft='6', scaleGridRight='20', scaleGridTop='6', scaleGridBottom='21')" />
+	-->
 </s:Group>
