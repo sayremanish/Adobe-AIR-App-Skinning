@@ -1,0 +1,17 @@
+*.kpf
+.idea
+pmip
+*.tmproj
+.DS_Store
+*.DS_Store
+tags
+
+## Tempoarary files
+mainsite/tmp
+app/tmp
+themes/tmp
+
+## Other files
+app/webroot/coverage/*
+app/views/themed/2_cover/*
+
