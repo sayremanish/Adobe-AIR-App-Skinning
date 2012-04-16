@@ -6,12 +6,6 @@ pmip
 *.DS_Store
 tags
 
-## Tempoarary files
-mainsite/tmp
-app/tmp
-themes/tmp
-
-## Other files
-app/webroot/coverage/*
-app/views/themed/2_cover/*
+## bin-debug files are to be ignored as well in Flex projects
+bin-debug
 
