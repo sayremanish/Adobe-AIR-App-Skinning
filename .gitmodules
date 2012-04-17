@@ -1,0 +1,3 @@
+[submodule "vendors/robotlegs"]
+	path = vendors/robotlegs
+	url = https://github.com/robotlegs/robotlegs-framework.git
