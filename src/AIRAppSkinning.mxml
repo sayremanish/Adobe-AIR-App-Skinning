@@ -4,8 +4,8 @@
 					   showStatusBar="false"
 					   skinClass="com.kim.skins.background.AppSkin"
 					   resize="windowedapplication1_resizeHandler(event)"
-					   xmlns:dragdrop="org.robotlegs.demos.draganddrop.*"
-					   xmlns:dragdropview="org.robotlegs.demos.draganddrop.view.*"
+					   xmlns:storybot="org.storybot.*"
+					   xmlns:dragdropview="org.storybot.view.*"
 					   xmlns:mx="library://ns.adobe.com/flex/mx">
 	
 	<fx:Script>
@@ -44,7 +44,7 @@
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
-		<dragdrop:DragAndDropContext contextView="{this}"/>
+		<storybot:DragAndDropContext contextView="{this}"/>
 	</fx:Declarations>
 	
 	<s:BorderContainer left="10" top="40" bottom="40" width="340"
