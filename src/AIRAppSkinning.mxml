@@ -4,7 +4,7 @@
 					   showStatusBar="false"
 					   skinClass="com.kim.skins.background.AppSkin"
 					   resize="windowedapplication1_resizeHandler(event)"
-					   xmlns:mx="library://ns.adobe.com/flex/mx">
+					   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="com.kim.controls.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -50,9 +50,11 @@
 					   skinClass="com.kim.skins.rightPanel.RightPanelSkin">
 		<s:Scroller left="5" top="25" right="5" bottom="5" skinClass="com.kim.skins.common.scroller.ScrollerSkin">
 			<s:Group width="100%" height="100%">
-				<s:Image source="@Embed('assets/sample.jpg')"/>
+				<!--<s:Image source="@Embed('assets/sample.jpg')"/>-->
 			</s:Group>
 		</s:Scroller>
+		
+		<controls:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" />
 	</s:BorderContainer>
 	<s:Button id="btnClose" right="10" top="10" click="btnClose_clickHandler(event)"
 			  skinClass="com.kim.skins.window.close.CloseButtonSkin"/>
