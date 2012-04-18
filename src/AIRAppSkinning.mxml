@@ -4,7 +4,7 @@
 					   showStatusBar="false"
 					   skinClass="com.kim.skins.background.AppSkin"
 					   resize="windowedapplication1_resizeHandler(event)"
-					   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="com.kim.controls.*">
+					   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="com.kim.view.controls.*" xmlns:view="com.kim.view.*" xmlns:kim="com.kim.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -41,7 +41,7 @@
 	</fx:Script>
 	
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<kim:DragAndDropContext contextView="{this}" />
 	</fx:Declarations>
 	<s:BorderContainer left="10" top="40" bottom="40" width="340"
 					   skinClass="com.kim.skins.leftPanel.LeftPanelSkin">
@@ -54,7 +54,7 @@
 			</s:Group>
 		</s:Scroller>
 		
-		<controls:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" />
+		<view:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" />
 	</s:BorderContainer>
 	<s:Button id="btnClose" right="10" top="10" click="btnClose_clickHandler(event)"
 			  skinClass="com.kim.skins.window.close.CloseButtonSkin"/>
