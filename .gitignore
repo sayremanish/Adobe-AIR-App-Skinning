@@ -1,0 +1,11 @@
+*.kpf
+.idea
+pmip
+*.tmproj
+.DS_Store
+*.DS_Store
+tags
+
+## bin-debug files are to be ignored as well in Flex projects
+bin-debug
+
