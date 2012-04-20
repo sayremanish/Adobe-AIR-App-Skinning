@@ -12,6 +12,7 @@ package com.kim.service
 	import mx.collections.Sort;
 	import mx.collections.SortField;
 	
+	import org.purepdf.elements.ReadOnlyRectangle;
 	import org.purepdf.elements.images.ImageElement;
 	import org.purepdf.pdf.PageSize;
 	import org.purepdf.pdf.PdfDocument;
@@ -34,19 +35,43 @@ package com.kim.service
 			super();
 		}
 		
+		//This will sort array alphabetically and numerically in ascending order
+		private function sortAscending(element1:Object, element2:Object, fields:Array):int
+		{
+			var fileName1:String = File(element1).name.toLowerCase();
+			var fileName2:String = File(element2).name.toLowerCase();
+			
+			if(isNaN(Number(fileName1)) || isNaN(Number(fileName2))){
+				if (fileName1 < fileName2){
+					return -1;
+				}else if (fileName2 < fileName1){
+					return 1;
+				}else{
+					return 0;
+				}
+			}else{
+				var num1:Number = Number(fileName1);
+				var num2:Number = Number(fileName2);
+				if (num1 < num2){
+					return -1;
+				}else if (num2 < num1){
+					return 1;
+				}else{
+					return 0;
+				}
+			}
+		}
+		
 		public function generate(files:FileCollection):void{
 			var path:String = this.__destinationFolder + File.separator;
 			
 			_buffer = new ByteArray();
 			_writer = PdfWriter.create(_buffer, PageSize.A4);
-			_pdf = _writer.pdfDocument;
-			
-			_pdf.setPdfVersion(PdfVersion.VERSION_1_5);
 			
 			
 			//Filter files before use
 			var filteredFiles:FileCollection = Utils.filterFiles(files, ["png", "jpg", "jpeg"]);
-			
+			filteredFiles
 			//Sort the files
 			var nameSortField:SortField= new SortField();
 			nameSortField.name = "name";
@@ -54,6 +79,8 @@ package com.kim.service
 			
 			var sort:Sort = new Sort();
 			sort.fields = [nameSortField];
+			sort.compareFunction = sortAscending;
+			
 			filteredFiles.sort = sort;
 			filteredFiles.refresh();
 			
@@ -65,7 +92,7 @@ package com.kim.service
 				fs = new FileStream();
 				fs.open(_currentFile,FileMode.READ);
 				fs.readBytes(byteArr);
-				processImages(byteArr);
+				createPDFPage(byteArr);
 			}
 			
 			//Generate PDF
@@ -81,11 +108,27 @@ package com.kim.service
 			fs.close();
 		}
 		
-		//This will process jpg and gif image and add it to new pdf page
-		private function processImages(bArr:ByteArray):void
+		//This will process image and create new pdf page
+		private function createPDFPage(bArr:ByteArray):void
 		{
 			var image:ImageElement = ImageElement.getInstance(bArr);
-			image.scalePercent(50, 50);
+			
+			_pdf = _writer.pdfDocument;
+			_pdf.setPdfVersion(PdfVersion.VERSION_1_5);
+			_pdf.setMargins(2,2,2,2);
+			
+			//This will check if the size of image is greater than A4 size
+			//It will also check whether image width is less than equal to A4 size width and image height is greater than equal to A4 size height
+			//and also check whether image width is greater than equal to A4 size width and image height is less than equal to A4 size height
+			//If any one of the condition is satisfied we will assign custom page size to the pdf page as image width and height
+			if(image.width >= 595 && image.height >= 842
+				|| image.width <= 595 && image.height >= 842
+				|| image.width >= 595 && image.height <= 842){//where A4 width is 595 and A4 height is 842
+				
+				_pdf.pageSize = new ReadOnlyRectangle(0,0,image.width + 2, image.height + 2);
+			}else{
+				_pdf.pageSize = PageSize.A4;
+			}
 			
 			if(_pdf.opened){
 				_pdf.newPage();		

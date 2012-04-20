@@ -7,7 +7,7 @@ package com.kim.events
 	
 	public class FileDropEvent extends Event
 	{
-		public static const FILE_DROP:String='com.kim.events.FileDrop.FILE_DROP'
+		public static const FILE_DROP:String='com.kim.events.FileDropEvent.FILE_DROP'
 		protected var _files:FileCollection;
 		
 		public function FileDropEvent(type:String, files:FileCollection, bubbles:Boolean=false, cancelable:Boolean=false)
