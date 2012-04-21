@@ -53,7 +53,6 @@
 				<!--<s:Image source="@Embed('assets/sample.jpg')"/>-->
 			</s:Group>
 		</s:Scroller>
-		
 		<view:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" />
 	</s:BorderContainer>
 	<s:Button id="btnClose" right="10" top="10" click="btnClose_clickHandler(event)"
