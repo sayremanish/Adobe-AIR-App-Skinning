@@ -1,0 +1,6 @@
+[submodule "vendors/robotlegs"]
+	path = vendors/robotlegs
+	url = https://github.com/robotlegs/robotlegs-framework.git
+[submodule "vendors/swiftsuspenders"]
+	path = vendors/swiftsuspenders
+	url = https://github.com/tschneidereit/SwiftSuspenders
