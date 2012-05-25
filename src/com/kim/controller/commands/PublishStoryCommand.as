@@ -14,7 +14,7 @@ package com.kim.controller.commands
 		[Inject]
 		public var service:StoryzerPublishService;
 		
-		override public function execute():void {
+		override public function execute():void {			
 			service.publishStory(event.file);
 		}
 	}

@@ -61,12 +61,13 @@ package com.kim.service
 			
 			try {
 			
-			var fs:FileStream = new FileStream();
+				var fs:FileStream = new FileStream();
+				
+				fs.open(destinationFile, FileMode.WRITE);
+				fs.writeBytes(_buffer, 0, _buffer.length);
+				
+				fs.close();	
 			
-			fs.open(destinationFile, FileMode.WRITE);
-			fs.writeBytes(_buffer, 0, _buffer.length);
-			
-			fs.close();			
 			}
 			catch(errObject:Error) {
 				

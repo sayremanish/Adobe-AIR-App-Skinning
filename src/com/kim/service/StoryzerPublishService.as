@@ -39,10 +39,10 @@ package com.kim.service
 			loader = new URLLoader();
 		}
 		
-		private const STORYZER_PUBLISH_STORY_URL:String = "http://storyzer.com/stories/add";
-		private const STORYZER_PUBLISH_ARTWORK_URL:String = "http://storyzer.com/works/add";
+		private const STORYZER_PUBLISH_STORY_URL:String = "http://storyzer.localhost/stories/add";
+		private const STORYZER_PUBLISH_ARTWORK_URL:String = "http://stage.storyzer.com/works/add";
 		
-		public function publishStory(file:ByteArray):void {
+		public function publishStory(file:File):void {
 			var urlRequest:URLRequest = new URLRequest(STORYZER_PUBLISH_STORY_URL);
 			// set to method=POST
 			urlRequest.method = URLRequestMethod.POST;
@@ -65,7 +65,7 @@ package com.kim.service
 			
 			params.StoryImage = new Array();
 			params.StoryImage['0'] = new Array();
-			params.StoryImage['0']['filename'] = file;
+			params.StoryImage['0']['filename'] = file.data;
 			
 			params.StoriesInList = new Array();
 			params.StoriesInList['0'] = new Array();
