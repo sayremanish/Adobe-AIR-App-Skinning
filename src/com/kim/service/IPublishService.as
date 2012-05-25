@@ -6,7 +6,7 @@ package com.kim.service
 	public interface IPublishService
 	{
 		// function inside the StoryzerPublishService
-		function getResults(forQuery:String="robotlegs"):void;
+		function publishStory(forQuery:String="robotlegs"):void;
 		
 		// set the parser something??
 		function set parser(value:IPublishResultParser):void;

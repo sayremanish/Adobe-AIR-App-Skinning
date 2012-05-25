@@ -1,6 +1,8 @@
 package com.kim.service
 {
 	import com.kim.collections.FileCollection;
+	import com.kim.events.FileCreatedEvent;
+	import com.kim.events.UnsuccessfulFileCreatedEvent;
 	import com.kim.utils.Utils;
 	
 	import flash.filesystem.File;
@@ -57,10 +59,23 @@ package com.kim.service
 		protected function writeToFile():void{
 			var destinationFile:File = File.applicationStorageDirectory.resolvePath(_newPath);
 			
+			try {
+			
 			var fs:FileStream = new FileStream();
+			
 			fs.open(destinationFile, FileMode.WRITE);
 			fs.writeBytes(_buffer, 0, _buffer.length);
+			
 			fs.close();			
+			}
+			catch(errObject:Error) {
+				
+				dispatch(new UnsuccessfulFileCreatedEvent(UnsuccessfulFileCreatedEvent.FILE_CREATE_FAIL, errObject));
+				return;
+			}
+			
+			dispatch(new FileCreatedEvent(FileCreatedEvent.FILE_CREATED, destinationFile));
+			return;
 		}
 		
 		protected function createPage(byteArray:ByteArray):void{
