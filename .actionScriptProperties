@@ -4,6 +4,7 @@
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/robotlegs/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/swiftsuspenders/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendors/as3corelib/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
