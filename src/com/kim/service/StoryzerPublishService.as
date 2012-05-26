@@ -43,6 +43,8 @@ package com.kim.service
 		private const STORYZER_PUBLISH_ARTWORK_URL:String = "http://stage.storyzer.com/works/add";
 		
 		public function publishStory(file:File):void {
+			
+			
 			var urlRequest:URLRequest = new URLRequest(STORYZER_PUBLISH_STORY_URL);
 			// set to method=POST
 			urlRequest.method = URLRequestMethod.POST;
@@ -53,6 +55,7 @@ package com.kim.service
 			
 			
 			var params:URLVariables = new URLVariables();
+			params.Story = new Array();
 			
 			params.Story.title = 'Title1';
 			params.Story.description = 'desc';

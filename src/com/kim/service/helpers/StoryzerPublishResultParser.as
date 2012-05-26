@@ -9,9 +9,9 @@ package com.kim.service.helpers
 		
 		public function parsePublishResults(results:Object):Array
 		{
-			var jsonStringResults = JSON.stringify(results)
+			var jsonStringResults:String = JSON.stringify(results)
 			
-			return null;
+			return new Array() ;
 		}
 	}
 }

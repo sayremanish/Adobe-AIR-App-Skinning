@@ -6,10 +6,16 @@ package com.kim
 	
 	import com.kim.events.FileCreatedEvent;
 	import com.kim.events.FileDropEvent;
-	
 	import com.kim.service.CBZGenerationService;
 	import com.kim.service.PDFGenerationService;
+	
+	import com.kim.service.IPublishService;
 	import com.kim.service.StoryzerPublishService;
+	
+	
+	import com.kim.service.helpers.StoryzerPublishResultParser;
+	import com.kim.service.helpers.IPublishResultParser;	
+	
 	
 	import com.kim.view.DropBox;
 	import com.kim.view.DropBoxMediator;
@@ -24,11 +30,13 @@ package com.kim
 			
 			//injector.mapSingleton(PDFGenerationService);
 			injector.mapSingleton(CBZGenerationService);
-			injector.mapSingleton(StoryzerPublishService);
+			injector.mapSingletonOf(IPublishService, StoryzerPublishService);
+			injector.mapSingletonOf(IPublishResultParser, StoryzerPublishResultParser);
+			
 			
 			//commandMap.mapEvent(FileDropEvent.FILE_DROP,PDFGenerateCommand);
 			commandMap.mapEvent(FileDropEvent.FILE_DROP,CBZGenerateCommand);
-			commandMap.mapEvent(FileCreatedEvent.FILE_CREATED, PublishStoryCommand);
+			commandMap.mapEvent(FileCreatedEvent.FILE_CREATED, PublishStoryCommand, FileCreatedEvent);
 			
 			super.startup();
 		}

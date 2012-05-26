@@ -2,6 +2,7 @@ package com.kim.controller.commands
 {
 	import com.kim.events.FileCreatedEvent;
 	import com.kim.service.StoryzerPublishService;
+	import com.kim.service.IPublishService;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -12,7 +13,7 @@ package com.kim.controller.commands
 		public var event:FileCreatedEvent;
 		
 		[Inject]
-		public var service:StoryzerPublishService;
+		public var service:IPublishService;
 		
 		override public function execute():void {			
 			service.publishStory(event.file);
