@@ -49,34 +49,43 @@ package com.kim.service
 			// set to method=POST
 			urlRequest.method = URLRequestMethod.POST;
 			// set contenttype for binary file upload
-			urlRequest.contentType = "multipart/form-data";
-			// set it such that data format is in variables
-			loader.dataFormat = URLLoaderDataFormat.VARIABLES;
+			//urlRequest.contentType = "multipart/form-data";
+			
+			
+			
 			
 			
 			var params:URLVariables = new URLVariables();
-			params.Story = new Array();
 			
+			
+			
+			params['data[Story][title]'] = 'Title1';
+			
+			/*
 			params.Story.title = 'Title1';
 			params.Story.description = 'desc';
-			params.Story.publisher = '';
+			params.Story.publisher = 'asd';
 			params.Story.list_price = '11';
 			params.Story.currency = 'SGD';
 			
 			// extra hack-y stuff to get past authentication issues
 			params.Story.testdata = 1;
 			
-			params.StoryImage = new Array();
-			params.StoryImage['0'] = new Array();
-			params.StoryImage['0']['filename'] = file.data;
+			params.StoryFile = new Array();
+			params.StoryFile['0'] = new Array();
+			params.StoryFile['0']['filename'] = file.data;
+			
 			
 			params.StoriesInList = new Array();
 			params.StoriesInList['0'] = new Array();
 			params.StoriesInList['0']['listId'] = 1;
-			
+			*/
 			urlRequest.data = params;
 			
 			addLoaderListeners();
+			
+			// set it such that data format is in variables
+			loader.dataFormat = URLLoaderDataFormat.VARIABLES;
 			
 			loader.load(urlRequest);
 
