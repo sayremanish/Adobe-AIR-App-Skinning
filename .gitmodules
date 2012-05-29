@@ -1,9 +1,3 @@
-[submodule "vendors/robotlegs"]
-	path = vendors/robotlegs
-	url = https://github.com/robotlegs/robotlegs-framework.git
-[submodule "vendors/swiftsuspenders"]
-	path = vendors/swiftsuspenders
-	url = https://github.com/tschneidereit/SwiftSuspenders
-[submodule "vendors/as3corelib"]
-	path = vendors/as3corelib
-	url = https://github.com/mikechambers/as3corelib.git
+[submodule "vendors/mockolate"]
+	path = vendors/mockolate
+	url = git://github.com/drewbourne/mockolate.git
