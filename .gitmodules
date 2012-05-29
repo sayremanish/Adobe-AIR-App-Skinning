@@ -7,3 +7,6 @@
 [submodule "vendors/robotlegs"]
 	path = vendors/robotlegs
 	url = git://github.com/robotlegs/robotlegs-framework.git
+[submodule "vendors/flexunit"]
+	path = vendors/flexunit
+	url = git://github.com/flexunit/flexunit.git
