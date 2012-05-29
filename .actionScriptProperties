@@ -4,6 +4,9 @@
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/swiftsuspenders/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/robotlegs/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendors/mockolate"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendors/flexunit"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="test"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -18,6 +21,9 @@
   </compiler>
   <applications>
     <application path="AIRAppSkinning.mxml">
+      <airExcludes/>
+    </application>
+    <application path="TestRunner.mxml">
       <airExcludes/>
     </application>
   </applications>
