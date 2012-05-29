@@ -1,3 +1,9 @@
 [submodule "vendors/mockolate"]
 	path = vendors/mockolate
 	url = git://github.com/drewbourne/mockolate.git
+[submodule "vendors/swiftsuspenders"]
+	path = vendors/swiftsuspenders
+	url = git://github.com/tschneidereit/SwiftSuspenders.git
+[submodule "vendors/robotlegs"]
+	path = vendors/robotlegs
+	url = git://github.com/robotlegs/robotlegs-framework.git
