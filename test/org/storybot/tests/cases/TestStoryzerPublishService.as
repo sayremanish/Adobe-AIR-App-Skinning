@@ -7,17 +7,19 @@ package org.storybot.tests.cases
 	
 	import com.kim.service.StoryzerPublishService;
 	
+	import com.kim.events.PublishStoryEvent;
 	
-	public class TestFlickrService
+	
+	public class TestStoryzerPublishService
 	{
-		private var service:FlickrImageService;
+		private var service:StoryzerPublishService;
 		private var serviceDispatcher:EventDispatcher = new EventDispatcher();
 		
 		[Before]
 		public function setUp():void
 		{
 			serviceDispatcher = new EventDispatcher();
-			service = new FlickrImageService();
+			service = new StoryzerPublishService();
 			service.eventDispatcher = serviceDispatcher;
 		}
 		
@@ -29,21 +31,13 @@ package org.storybot.tests.cases
 		}
 		
 		[Test(async)]
-		public function testRetreiveImages():void
+		public function testPublishStory():void
 		{
-			this.serviceDispatcher.addEventListener( GalleryEvent.GALLERY_LOADED, 
-				Async.asyncHandler(this, handleImagesReceived, 8000, null, 
+			this.serviceDispatcher.addEventListener( PublishStoryEvent.SERVER_CONFIRM_UPLOAD_COMPLETE, 
+				Async.asyncHandler(this, handleStoryPublished, 8000, null, 
 					handleServiceTimeout), false, 0, true);
-			this.service.loadGallery();
-		}
-		
-		[Test(async)]
-		public function testSearchImages():void
-		{
-			this.serviceDispatcher.addEventListener( GalleryEvent.GALLERY_LOADED, 
-				Async.asyncHandler(this, handleImagesReceived, 8000, null, 
-					handleServiceTimeout), false, 0, true);
-			this.service.search("robotlegs");
+			
+			this.service.publishStory();
 		}
 		
 		protected function handleServiceTimeout( object:Object ):void
@@ -51,10 +45,10 @@ package org.storybot.tests.cases
 			Assert.fail('Pending Event Never Occurred');
 		}
 		
-		protected function handleImagesReceived(event:GalleryEvent, object:Object):void
+		protected function handleStoryPublished(event:PublishStoryEvent, object:Object):void
 		{
 			Assert.assertEquals("The gallery should have some photos: ", 
-				event.gallery.photos.length > 0, true)	
+				event.story.id > 0, true)	
 		}
 		
 		

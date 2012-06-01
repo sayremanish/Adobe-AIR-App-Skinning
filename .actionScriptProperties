@@ -5,7 +5,6 @@
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/swiftsuspenders/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/robotlegs/src"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendors/mockolate"/>
-      <compilerSourcePathEntry kind="1" linkType="1" path="vendors/flexunit"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="test"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">

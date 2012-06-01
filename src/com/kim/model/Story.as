@@ -7,6 +7,8 @@ package com.kim.model
 		
 		public function Story()
 		{
+		
 		}
+		
 	}
 }
