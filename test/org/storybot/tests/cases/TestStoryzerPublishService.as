@@ -2,6 +2,18 @@ package org.storybot.tests.cases
 {
 	import flash.events.EventDispatcher;
 	
+	import mockolate.prepare;
+	import mockolate.nice;
+	import mockolate.stub;
+	import mockolate.verify;
+	import mockolate.errors.VerificationError;
+	
+	import org.hamcrest.core.not;
+	import org.hamcrest.object.equalTo;
+	import org.hamcrest.object.nullValue;
+	import org.hamcrest.object.hasPropertyWithValue;
+
+	
 	import org.flexunit.Assert;
 	import org.flexunit.async.Async;
 	
@@ -47,7 +59,7 @@ package org.storybot.tests.cases
 		
 		protected function handleStoryPublished(event:PublishStoryEvent, object:Object):void
 		{
-			Assert.assertEquals("The gallery should have some photos: ", 
+			Assert.assertEquals("The story should be valid: ", 
 				event.story.id > 0, true)	
 		}
 		

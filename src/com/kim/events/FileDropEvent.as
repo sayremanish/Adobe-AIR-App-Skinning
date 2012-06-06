@@ -9,8 +9,9 @@ package com.kim.events
 	{
 		public static const FILE_DROP:String='com.kim.events.FileDropEvent.FILE_DROP'
 		protected var _files:FileCollection;
+		protected var _currentStoryFolder:String;
 		
-		public function FileDropEvent(type:String, files:FileCollection, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function FileDropEvent(type:String, files:FileCollection, currentStoryFolder:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			_files = files;
 			super(type, bubbles, cancelable);

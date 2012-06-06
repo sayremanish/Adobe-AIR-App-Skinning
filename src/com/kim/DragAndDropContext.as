@@ -11,6 +11,7 @@ package com.kim
 	
 	import com.kim.service.IPublishService;
 	import com.kim.service.StoryzerPublishService;
+	import com.kim.service.StoryLocalPreparationService;
 	
 	
 	import com.kim.service.helpers.StoryzerPublishResultParser;
@@ -30,6 +31,7 @@ package com.kim
 			
 			//injector.mapSingleton(PDFGenerationService);
 			injector.mapSingleton(CBZGenerationService);
+			injector.mapSingleton(StoryLocalPreparationService);
 			injector.mapSingletonOf(IPublishService, StoryzerPublishService);
 			injector.mapSingletonOf(IPublishResultParser, StoryzerPublishResultParser);
 			
