@@ -1,25 +1,23 @@
 package org.storybot.tests.cases
 {
-	import flash.events.EventDispatcher;
+	import com.kim.events.PublishStoryEvent;
+	import com.kim.service.StoryzerPublishService;
 	
-	import mockolate.prepare;
+	import flash.events.EventDispatcher;
+	import flash.filesystem.File;
+	
+	import mockolate.errors.VerificationError;
 	import mockolate.nice;
+	import mockolate.prepare;
 	import mockolate.stub;
 	import mockolate.verify;
-	import mockolate.errors.VerificationError;
-	
-	import org.hamcrest.core.not;
-	import org.hamcrest.object.equalTo;
-	import org.hamcrest.object.nullValue;
-	import org.hamcrest.object.hasPropertyWithValue;
-
 	
 	import org.flexunit.Assert;
 	import org.flexunit.async.Async;
-	
-	import com.kim.service.StoryzerPublishService;
-	
-	import com.kim.events.PublishStoryEvent;
+	import org.hamcrest.core.not;
+	import org.hamcrest.object.equalTo;
+	import org.hamcrest.object.hasPropertyWithValue;
+	import org.hamcrest.object.nullValue;
 	
 	
 	public class TestStoryzerPublishService
@@ -27,12 +25,20 @@ package org.storybot.tests.cases
 		private var service:StoryzerPublishService;
 		private var serviceDispatcher:EventDispatcher = new EventDispatcher();
 		
+		[Mock] public var mockStoryFile:File;
+		
+		private static const CBZ_FILE:String = "test.cbz";
+		
 		[Before]
 		public function setUp():void
 		{
 			serviceDispatcher = new EventDispatcher();
 			service = new StoryzerPublishService();
 			service.eventDispatcher = serviceDispatcher;
+			
+			// stubbing the mockStoryFile 
+			stub(mockStoryFile).getter("name").returns(CBZ_FILE);
+			stub(mockStoryFile).getter("size").returns(1);
 		}
 		
 		[After]
@@ -49,7 +55,7 @@ package org.storybot.tests.cases
 				Async.asyncHandler(this, handleStoryPublished, 8000, null, 
 					handleServiceTimeout), false, 0, true);
 			
-			this.service.publishStory();
+			this.service.publishStory(mockStoryFile);
 		}
 		
 		protected function handleServiceTimeout( object:Object ):void

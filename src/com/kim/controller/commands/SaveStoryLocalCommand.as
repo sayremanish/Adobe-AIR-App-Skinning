@@ -17,10 +17,8 @@ package com.kim.controller.commands
 		
 		override public function execute():void {
 			
+			localStoryService.save(event.files, event.currentStoryFolder);	
 			
-			if (createNewStory) {
-				localStoryService.save(event.files, event.currentStoryFolder);	
-			}
 			
 		}
 	}

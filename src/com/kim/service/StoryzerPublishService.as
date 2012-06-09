@@ -43,7 +43,7 @@ package com.kim.service
 			_file = new File();
 		}
 		
-		private const STORYZER_PUBLISH_STORY_URL:String = "http://storyzer.localhost/stories/add";
+		private const STORYZER_PUBLISH_STORY_URL:String = "http://storyzer.localhost/stories/add.json";
 		private const STORYZER_PUBLISH_ARTWORK_URL:String = "http://stage.storyzer.com/works/add";
 		
 		public function publishStory(file:File):void {
@@ -64,6 +64,10 @@ package com.kim.service
 			params['data[Story][testdata]'] = 1;
 						
 			params['data[StoriesInList][0][listId]'] = 1;
+			
+			// apparently Adobe AIR will send this as Submit Query, so we overwrite it
+			params['data[Upload]'] = 'Publish Story';
+			// Adobe AIR will also send data[Filename]
 			
 			urlRequest.data = params;
 			
@@ -104,6 +108,7 @@ package com.kim.service
 		private function handleUploadCompleteData(event:DataEvent):void
 		{
 			// leave empty for time being first
+			trace("uploadCompleteData data: " + event.data);
 		}
 		
 		private function handleFileUploadError(event:Event):void

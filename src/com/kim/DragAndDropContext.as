@@ -3,6 +3,7 @@ package com.kim
 	import com.kim.controller.commands.CBZGenerateCommand;
 	import com.kim.controller.commands.PDFGenerateCommand;
 	import com.kim.controller.commands.PublishStoryCommand;
+	import com.kim.controller.commands.SaveStoryLocalCommand;
 	
 	import com.kim.events.FileCreatedEvent;
 	import com.kim.events.FileDropEvent;
@@ -13,10 +14,8 @@ package com.kim
 	import com.kim.service.StoryzerPublishService;
 	import com.kim.service.StoryLocalPreparationService;
 	
-	
 	import com.kim.service.helpers.StoryzerPublishResultParser;
 	import com.kim.service.helpers.IPublishResultParser;	
-	
 	
 	import com.kim.view.DropBox;
 	import com.kim.view.DropBoxMediator;
@@ -37,6 +36,7 @@ package com.kim
 			
 			
 			//commandMap.mapEvent(FileDropEvent.FILE_DROP,PDFGenerateCommand);
+			//commandMap.mapEvent(FileDropEvent.FILE_DROP, SaveStoryLocalCommand);
 			commandMap.mapEvent(FileDropEvent.FILE_DROP,CBZGenerateCommand);
 			commandMap.mapEvent(FileCreatedEvent.FILE_CREATED, PublishStoryCommand, FileCreatedEvent);
 			
