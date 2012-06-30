@@ -42,6 +42,7 @@
 	
 	<fx:Declarations>
 		<kim:DragAndDropContext contextView="{this}" />
+		
 	</fx:Declarations>
 	<s:BorderContainer left="10" top="40" bottom="40" width="340"
 					   skinClass="com.kim.skins.leftPanel.LeftPanelSkin">
@@ -53,7 +54,9 @@
 				<!--<s:Image source="@Embed('assets/sample.jpg')"/>-->
 			</s:Group>
 		</s:Scroller>
-		<view:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" />
+		
+		<view:LoginForm verticalCenter="0" horizontalCenter="0" id="login" />
+		<view:DropBox verticalCenter="0" horizontalCenter="0" id="bucket" visible="false"/>
 	</s:BorderContainer>
 	<s:Button id="btnClose" right="10" top="10" click="btnClose_clickHandler(event)"
 			  skinClass="com.kim.skins.window.close.CloseButtonSkin"/>

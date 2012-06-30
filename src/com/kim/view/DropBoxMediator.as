@@ -1,7 +1,8 @@
 package com.kim.view
 {
-	import com.kim.events.FileDropEvent;
 	import com.kim.collections.FileCollection;
+	import com.kim.events.ApplicationSessionEvent;
+	import com.kim.events.FileDropEvent;
 	
 	import flash.desktop.ClipboardFormats;
 	import flash.desktop.NativeDragManager;
@@ -18,6 +19,12 @@ package com.kim.view
 		override public function onRegister():void{
 			addViewListener(NativeDragEvent.NATIVE_DRAG_ENTER, handleNativeDrag);
 			addViewListener(NativeDragEvent.NATIVE_DRAG_DROP, handleNativeDrop);
+			this.addContextListener(ApplicationSessionEvent.LOGGED_IN, handleLoggedIn);
+		}
+		
+		private function handleLoggedIn(event:ApplicationSessionEvent):void 
+		{
+			this.view.visible = true;
 		}
 		
 		private function handleNativeDrag(event:NativeDragEvent):void{

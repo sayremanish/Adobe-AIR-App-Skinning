@@ -8,6 +8,8 @@ package jsonrest.model
 	
 	import jsonrest.Constants;
 	
+	import mx.controls.List;
+	
 	/** 
 	 * follows the JSON REST 1.0 format
 	 * A JsonRestRequest has 3 important things to set before execution.
@@ -33,10 +35,28 @@ package jsonrest.model
 			_request = new URLRequest(uri);
 			_method = method;
 			_request.method = method;
+			_request.requestHeaders = [new URLRequestHeader("X-HTTP-Method-Override", _method), JSON_CONTENT_TYPE];
 			_request.data = content.stringify();
 			
-			_loader = new URLLoader();
+			this.urlReload();
+		}
+		
+		private function urlReload():void {
+			_loader = new URLLoader(_request);
 			_loader.addEventListener(Event.COMPLETE, handleResponse);
+		}
+		
+		// returns the length of the requestHeaders
+		public function addRequestHeader(reqHeader:URLRequestHeader):uint 
+		{
+			var length:uint  = _request.requestHeaders.push(reqHeader);
+			this.urlReload();
+			return length;
+		}
+		
+		public function get requestHeaders():Array
+		{
+			return _request.requestHeaders;
 		}
 		
 		public function get uri():String
@@ -44,13 +64,13 @@ package jsonrest.model
 			return _request.url;
 		}
 		
-		public function set uri(uri:String):Boolean
+		public function set uri(uri:String):void
 		{
 			_request = new URLRequest(uri);
 			_request.method = _method;
 			_request.requestHeaders = [new URLRequestHeader("X-HTTP-Method-Override", _method), JSON_CONTENT_TYPE];
 			_request.data = _content.stringify();
-			return true;
+			this.urlReload();
 		}
 		
 		public function get method():String
@@ -58,11 +78,11 @@ package jsonrest.model
 			return _request.method;
 		}
 		
-		public function set method(method:String):Boolean
+		public function set method(method:String):void
 		{
 			_request.method = _method;
 			_request.requestHeaders = [new URLRequestHeader("X-HTTP-Method-Override", _method)];
-			return true;
+			this.urlReload();
 		}
 		
 		public function get content():JsonRequestContent
@@ -70,13 +90,13 @@ package jsonrest.model
 			return new JsonRequestContent(_request.data.jsonrest, _request.data.api, _request.data.params);
 		}
 		
-		public function set content(content:JsonRequestContent):Boolean
+		public function set content(reqContent:JsonRequestContent):void
 		{
-			_request.data = content.stringify();	
-			return true;
+			_request.data = reqContent.stringify();
+			this.urlReload();
 		}
 		
-		public function get response():JsonRequestContent
+		public function get response():JsonResponseContent
 		{
 			return _responseContent;
 		}
@@ -89,7 +109,9 @@ package jsonrest.model
 		protected function handleResponse(event:Event):void
 		{
 			var data:String = _loader.data;
-			var response:JsonResponseContent = JSON.parse(data);
+			var jsonResponse:Object = JSON.parse(data);
+			
+			var response:JsonResponseContent = new JsonResponseContent(jsonResponse.result, jsonResponse.error);
 			_responseContent = response;
 		}
 	}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	
+	<fx:Script>
+		
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Label x="54" y="114" text="Email"/>
+	<s:Label x="54" y="161" text="Password"/>
+	<s:TextInput x="161" y="106" id="email"/>
+	<s:TextInput x="161" y="156" id="password"/>
+	<s:Button id="login_btn" x="54" y="208" label="Login" />
+	
+	
+</s:Group>

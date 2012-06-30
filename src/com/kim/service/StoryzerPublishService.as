@@ -16,11 +16,13 @@ package com.kim.service
 	import flash.net.URLLoaderDataFormat;
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
+	import flash.net.URLRequestHeader;
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 	
 	import org.robotlegs.mvcs.Actor;
 
+	import com.kim.Globals;
 	
 	public class StoryzerPublishService extends Actor implements IPublishService
 	{
@@ -43,16 +45,27 @@ package com.kim.service
 			_file = new File();
 		}
 		
-		private const STORYZER_PUBLISH_STORY_URL:String = "http://storyzer.localhost/stories/add.json";
+		private const STORYZER_PUBLISH_STORY_URL:String = "http://api.storyzer.localhost/stories/add";
 		private const STORYZER_PUBLISH_ARTWORK_URL:String = "http://stage.storyzer.com/works/add";
 		
 		public function publishStory(file:File):void {
 			// assign the file into private var _file
 			_file = file;
 			
-			var urlRequest:URLRequest = new URLRequest(STORYZER_PUBLISH_STORY_URL);
+			//var appendURLWToken:String = STORYZER_PUBLISH_STORY_URL + '?access_token=' + Globals.ACCESS_TOKEN;
+			var appendURLWToken:String = STORYZER_PUBLISH_STORY_URL;
+			
+			var urlRequest:URLRequest = new URLRequest(appendURLWToken);
+			
+			trace(appendURLWToken);
+			
 			// set to method=POST
 			urlRequest.method = URLRequestMethod.POST;
+			
+			var acceptHeader:URLRequestHeader = new URLRequestHeader("Accept", "application/json");
+			urlRequest.requestHeaders.push(acceptHeader);
+			var authorizationHeader:URLRequestHeader = new URLRequestHeader("Authorization", 'Bearer ' + Globals.ACCESS_TOKEN);
+			urlRequest.requestHeaders.push(authorizationHeader);
 			
 			var params:URLVariables = new URLVariables();
 			
@@ -61,7 +74,7 @@ package com.kim.service
 			params['data[Story][publisher]'] = '';
 			params['data[Story][list_price]'] = '11.00';
 			params['data[Story][currency]'] = 'SGD';
-			params['data[Story][testdata]'] = 1;
+			
 						
 			params['data[StoriesInList][0][listId]'] = 1;
 			
@@ -72,6 +85,8 @@ package com.kim.service
 			urlRequest.data = params;
 			
 			addFileListeners();
+			
+			
 			
 			// now we upload the file and other POST data
 			_file.upload(urlRequest, "data[StoryFile][0][filename]");
